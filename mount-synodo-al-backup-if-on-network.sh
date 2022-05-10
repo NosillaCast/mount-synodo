@@ -14,15 +14,27 @@ if ping -c 1 -W 1 "$ip"; then
 		if mount | grep $share; then
 			# echo "$share is mounted already"
 			export result="$share is mounted already"
-			echo $result
 		else
 			# echo "$share is unmounted"
-			export result="$share is unmounted"
-			echo $result
+			export result="$share is on network but unmounted"
 		fi
 else
 	# send funny message that's easy to search in the output
 	# echo "$ip is pining for the fjords"
 	export result="$ip is pining for the fjords"
-	echo $result
+fi
+
+# Based on value of $result:
+# ignore if mounted already
+# mount if on the network but unmounted
+# ignore if not on the network
+# simpler path might be to only do something if on network and unmounted
+
+# echo $result
+echo //$ip/$share
+
+if [ $result="$share is on network but unmounted" ];
+	then
+		echo "mounting $share"
+		mount -t smbfs //$ip/$share /Volumes/$share
 fi
