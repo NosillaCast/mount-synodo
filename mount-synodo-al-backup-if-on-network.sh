@@ -12,15 +12,15 @@ if ping -c 1 -W 1 "$ip"; then
 	# echo easy-to-search responses
 
 		if mount | grep $share; then
-			# echo "$share is mounted already"
+			echo "$share is mounted already"
 			export result="$share is mounted already"
 		else
-			# echo "$share is unmounted"
+			echo "$share is unmounted"
 			export result="$share is on network but unmounted"
 		fi
 else
 	# send funny message that's easy to search in the output
-	# echo "$ip is pining for the fjords"
+	echo "$ip is pining for the fjords"
 	export result="$ip is pining for the fjords"
 fi
 
@@ -35,6 +35,6 @@ echo //$ip/$share
 
 if [ $result="$share is on network but unmounted" ];
 	then
-		echo "mounting $share"
-		mount -t smbfs //$ip/$share /Volumes/$share
+		echo "opening $share"
+		open smb://$ip/$share
 fi
