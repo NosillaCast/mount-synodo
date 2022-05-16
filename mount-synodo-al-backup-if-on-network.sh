@@ -30,7 +30,7 @@ fi
 # ignore if not on the network
 # simpler path might be to only do something if on network and unmounted
 
-# echo $result
+echo $result
 echo //$ip/$share
 
 if [ $result="$share is on network but unmounted" ];
