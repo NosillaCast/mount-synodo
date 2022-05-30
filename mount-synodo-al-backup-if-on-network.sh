@@ -34,8 +34,8 @@ fi
 
 # echo //$ip/$share
 
-# if [ $result="$share is on network but unmounted" ];
-# 	then
-# 		echo "opening $share"
-# 		open smb://$ip/$share
-# fi
+if [ $result="$share is on network but unmounted" ];
+	then
+		echo "opening $share"
+		open smb://$ip/$share
+fi
